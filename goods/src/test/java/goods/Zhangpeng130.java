@@ -5,7 +5,8 @@ public static void main(String[] args) {
 	System.out.println("zhangpeng130 commit fork");
 	System.out.println("zhangpeng130");
 	System.out.println("123");
-	sysout.pring(remote upstream master);
+	System.out.println("2017年11月19日16:41:10 开始销管项目");
+	
 
 }
 }
