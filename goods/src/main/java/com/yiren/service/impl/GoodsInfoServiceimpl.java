@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.yiren.dao.GoodsInfoDao;
 import com.yiren.entity.GoodsInfo;
 import com.yiren.service.GoodsInfoService;
-@Service("")
+@Service
 public class GoodsInfoServiceimpl implements GoodsInfoService{
 @Resource
 	private GoodsInfoDao goodsInfoDao;
