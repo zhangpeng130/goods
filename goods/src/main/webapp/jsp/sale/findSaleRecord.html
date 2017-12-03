@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  charset="utf-8">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>    
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+<!-- Latest compiled and minified Locales -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+   <title>销管:老板专属_销售记录查询</title>
+   </head>
+   
+   <body style="width: auto; height: auto; " >
+   <table id="table">
+
+</table>
+  <script type="text/javascript">
+	   $('#table').bootstrapTable({		   
+		  url:'/goods/Sale/FindSaleRecord.do',		
+	
+		   method: 'get',   		   
+		   columns: [{
+		        'field': 'id',
+		        'title': '编号'
+		    }, {
+		        'field': 'buyer',
+		        'title': '购买人'
+		    }],
+		   /// data:[{"address":"3","buyer":"1","id":1,"phone":"4","remark":"5"},{"address":"2","buyer":"2","id":2,"phone":"2","remark":"2"},{"address":"3","buyer":"3","id":3,"phone":"3","remark":"3"},{"address":"3","buyer":"3","id":4,"phone":"3","remark":"3"},{"address":"3","buyer":"3","id":5,"phone":"3","remark":"2"},{"address":"3","buyer":"3","id":6,"phone":"3","remark":"2"}]
+	    });
+
+   </script>
+
+   </body>
+</html>
