@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.yiren.dao.GoodsSaleDao;
-import com.yiren.entity.GoodsInfo;
 import com.yiren.entity.GoodsSale;
 import com.yiren.service.GoodsSaleService;
 @Service
@@ -24,9 +23,10 @@ public int addGoodsSale(GoodsSale goodsSale) {
 }
 
 @Override
-public List<GoodsInfo> findGoodsSale(GoodsInfo goodsInfo) {
+public List<GoodsSale> findGoodsSale(GoodsSale goodsSale) {
 	// TODO Auto-generated method stub
-	return null;
+	List<GoodsSale> goodsSaleList=goodsSaleDao.findGoodsSale(null);
+	return goodsSaleList;
 }
 
 	

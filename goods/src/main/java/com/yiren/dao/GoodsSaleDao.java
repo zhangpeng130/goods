@@ -14,6 +14,6 @@ public interface GoodsSaleDao {
 			+ "values(#{buyer},#{goodsName},#{address},#{phone},#{seller},#{price},#{debt},#{repay},#{remark},#{buyTime},#{createTime},#{state})")
 	public int insertGoodsSale(GoodsSale goodsSale);
 
-@Select("select * from TM_GOODS_SALE  where state=0")
+@Select("select * from TM_GOODS_SALE ")
 	public List<GoodsSale>  findGoodsSale(GoodsSale goodsSale);
 }

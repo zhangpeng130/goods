@@ -2,7 +2,6 @@ package com.yiren.service;
 
 import java.util.List;
 
-import com.yiren.entity.GoodsInfo;
 import com.yiren.entity.GoodsSale;
 /**
  * 
@@ -11,5 +10,5 @@ import com.yiren.entity.GoodsSale;
  */
 public interface GoodsSaleService {
 	public int addGoodsSale(GoodsSale goodsSale);
-    public List<GoodsInfo>  findGoodsSale(GoodsInfo goodsInfo);
+    public List<GoodsSale>  findGoodsSale(GoodsSale goodsSale);
 }
