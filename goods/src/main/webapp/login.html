@@ -10,17 +10,20 @@
    <body style="width: auto; height: auto; " >
    <div style="width:100%;height:0px; "></div>
    <div style="margin-top:130px; padding-left:25% ;padding-top:50px; width:100%;height:300px;">
-    <form class="form-horizontal" role="form" action="/goods/jsp/sale/saleInput.html">
+  <!-- <form class="form-horizontal" role="form" action="/goods/jsp/sale/saleInput.html"> -->
+  <form class="form-horizontal" role="form" action="/goods/user/UserLogin.do">
+
+  <!-- <form class="form-horizontal" role="form" action="/goods/user/UserInput.do">-->
    <div class="form-group">
     <label for="firstname" class="col-sm-2 control-label">用户名</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="firstname" placeholder="嗨!老板,请输入用户名">
+      <input type="text" class="form-control" id="userName"  name="userName" placeholder="嗨!老板,请输入用户名">
     </div>
   </div>
   <div class="form-group">
     <label for="lastname" class="col-sm-2 control-label">密码</label>
     <div class="col-sm-3">
-      <input type="text" class="form-control" id="lastname" placeholder="老板,输入下密码呗">
+      <input type="text" class="form-control" id="password"  name="password" placeholder="老板,输入下密码呗">
     </div>
   </div>
 

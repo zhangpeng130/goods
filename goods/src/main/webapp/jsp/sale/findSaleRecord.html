@@ -22,8 +22,7 @@
 </table>
   <script type="text/javascript">
 	   $('#table').bootstrapTable({		   
-		  url:'/goods/Sale/FindSaleRecord.do',		
-	
+		  url:'/goods/Sale/FindSaleRecord.do',			
 		   method: 'get',   		   
 		   columns: [{
 		        'field': 'id',
@@ -32,6 +31,11 @@
 		        'field': 'buyer',
 		        'title': '购买人'
 		    }],
+		    striped:true,
+		    pagination:true,
+		    search:true,		 
+		    searchAlign:'center',
+		    paginationHAlign:'left'
 		   /// data:[{"address":"3","buyer":"1","id":1,"phone":"4","remark":"5"},{"address":"2","buyer":"2","id":2,"phone":"2","remark":"2"},{"address":"3","buyer":"3","id":3,"phone":"3","remark":"3"},{"address":"3","buyer":"3","id":4,"phone":"3","remark":"3"},{"address":"3","buyer":"3","id":5,"phone":"3","remark":"2"},{"address":"3","buyer":"3","id":6,"phone":"3","remark":"2"}]
 	    });
 
