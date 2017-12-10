@@ -14,29 +14,69 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.alibaba.fastjson.JSON;
+import com.yiren.entity.GoodsSale;
+
 public class PoiDemo {
 	public static void main(String[] args) {
 		try {
-			parseToEntity();
+			sysoutList();
 		} catch (InvalidFormatException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void parseToEntity() throws InvalidFormatException,
+	public static void sysoutList() throws InvalidFormatException, IOException {
+		List list = parseToEntity();
+		for (int i = 0; i < list.size(); i++) {
+			GoodsSale gs = (GoodsSale) list.get(i);
+			System.out.println(JSON.toJSONString(gs));
+		}
+	}
+
+	public static List parseToEntity() throws InvalidFormatException,
 			IOException {
 		List rowlist = poiTest1();
+		List goodsSaleList = new ArrayList();
 		for (int i = 0; i < rowlist.size(); i++) {
 			Map rowMap = (Map) rowlist.get(i);
 			Set rowMapSet = rowMap.keySet();
 			Iterator keySetIterator = rowMapSet.iterator();
+			GoodsSale goodsSale = new GoodsSale();
 			while (keySetIterator.hasNext()) {
 				// System.out.print(keySetIterator.next());
 				Object key = keySetIterator.next();
 				Object value = rowMap.get(key);
-				System.out.print(key + "(" + rowMap.get(key) + ")");
+				// System.out.print(key + "(" + rowMap.get(key) + ")");
+				mapToEntity(key, value, goodsSale);
 			}
-			System.out.println();
+			// System.out.println();
+			goodsSaleList.add(goodsSale);
+		}
+		return goodsSaleList;
+	}
+
+	public static void mapToEntity(Object key, Object value, GoodsSale goodsSale) {
+		Map tempMap = new HashMap();
+		tempMap.put(0, "buyer");
+		tempMap.put(1, "goodsName");
+		tempMap.put(2, "address");
+		tempMap.put(3, "phone");
+		String tempKey = tempMap.get(key) != null ? tempMap.get(key).toString()
+				: null;
+		if (tempKey != null) {
+			if ("buyer".equals(tempKey)) {
+				goodsSale.setBuyer(value.toString());
+			}
+			if ("goodsName".equals(tempKey)) {
+				goodsSale.setGoodsName(value.toString());
+			}
+			if ("address".equals(tempKey)) {
+				goodsSale.setAddress(value.toString());
+			}
+			if ("phone".equals(tempKey)) {
+				goodsSale.setPhone(value.toString());
+			}
 		}
 	}
 
