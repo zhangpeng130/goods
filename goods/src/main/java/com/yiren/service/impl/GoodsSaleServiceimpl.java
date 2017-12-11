@@ -1,5 +1,6 @@
 package com.yiren.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,6 +27,11 @@ public class GoodsSaleServiceimpl implements GoodsSaleService {
 	public int addGoodsSale(GoodsSale goodsSale) {
 		// TODO 权限校验
 		// TODO GoodsSale重新定义vo，防止列暴露
+
+		goodsSale.setSeller("登录者");
+		goodsSale.setBuyTime(new Date());// 后期支持手动修改
+		goodsSale.setCreateTime(new Date());
+
 		int insertCount = goodsSaleDao.insertGoodsSale(goodsSale);
 		return insertCount;
 	}
@@ -57,6 +63,7 @@ public class GoodsSaleServiceimpl implements GoodsSaleService {
 		int insertCount = 0;
 		for (int i = 0; i < list.size(); i++) {
 			GoodsSale goodsSale = (GoodsSale) list.get(i);
+			goodsSale.setSeller("登录者");
 			insertCount += goodsSaleDao.insertGoodsSale(goodsSale);
 		}
 		System.out.println(insertCount);

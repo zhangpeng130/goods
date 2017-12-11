@@ -1,6 +1,7 @@
 package com.yiren.service.impl;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -82,6 +84,9 @@ public class PoiServiceimpl implements PoiService {
 		List rowList = new ArrayList();
 		while (rowIt.hasNext()) {
 			Row row = rowIt.next();
+			if (row.getRowNum() == 0) {
+				continue;
+			}
 			Iterator<Cell> cellIt = row.cellIterator();
 			Map rowMap = new HashMap();
 			while (cellIt.hasNext()) {
@@ -106,13 +111,18 @@ public class PoiServiceimpl implements PoiService {
 	 * @param goodsSale
 	 */
 	public void mapToGoodsSale(Object key, Object value, GoodsSale goodsSale) {
-		Map tempMap = new HashMap();
-		tempMap.put(0, "buyer");
-		tempMap.put(1, "goodsName");
-		tempMap.put(2, "address");
-		tempMap.put(3, "phone");
-		String tempKey = tempMap.get(key) != null ? tempMap.get(key).toString()
-				: null;
+		Map routeMap = new HashMap();
+		routeMap.put(0, "buyer");
+		routeMap.put(1, "goodsName");
+		routeMap.put(2, "address");
+		routeMap.put(3, "phone");
+		routeMap.put(4, "price");
+		routeMap.put(5, "debt");
+		routeMap.put(6, "repay");
+		routeMap.put(7, "remark");
+		routeMap.put(8, "buyTime");
+		String tempKey = routeMap.get(key) != null ? routeMap.get(key)
+				.toString() : null;
 		if (tempKey != null) {
 			if ("buyer".equals(tempKey)) {
 				goodsSale.setBuyer(value.toString());
@@ -126,7 +136,23 @@ public class PoiServiceimpl implements PoiService {
 			if ("phone".equals(tempKey)) {
 				goodsSale.setPhone(value.toString());
 			}
+			if (value instanceof Double) {
+				if ("price".equals(tempKey)) {
+					goodsSale.setPrice(new BigDecimal((Double) value));
+				}
+				if ("debt".equals(tempKey)) {
+					goodsSale.setDebt(new BigDecimal((Double) value));
+				}
+				if ("repay".equals(tempKey)) {
+					goodsSale.setRepay(new BigDecimal((Double) value));
+				}
+				if ("buyTime".equals(tempKey)) {
+					goodsSale.setBuyTime(DateUtil.getJavaDate((Double) value));
+				}
+			}
+			if ("remark".equals(tempKey)) {
+				goodsSale.setRemark(value.toString());
+			}
 		}
 	}
-
 }
