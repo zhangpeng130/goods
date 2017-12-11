@@ -2,6 +2,8 @@ package com.yiren.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.yiren.entity.GoodsSale;
 
 /**
@@ -14,5 +16,5 @@ public interface GoodsSaleService {
 
 	public List<GoodsSale> findGoodsSale(GoodsSale goodsSale);
 
-	public boolean importGoodsSale(String path);
+	public boolean importGoodsSale(MultipartFile importfile);
 }
