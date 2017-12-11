@@ -15,6 +15,7 @@ import com.yiren.entity.GoodsSale;
 import com.yiren.service.GoodsSaleService;
 import com.yiren.service.PoiService;
 import com.yiren.utils.UploadUtils;
+import com.yiren.vo.GoodsSaleVo;
 
 @Service
 public class GoodsSaleServiceimpl implements GoodsSaleService {
@@ -24,9 +25,17 @@ public class GoodsSaleServiceimpl implements GoodsSaleService {
 	private PoiService poiService;
 
 	@Override
-	public int addGoodsSale(GoodsSale goodsSale) {
+	public int addGoodsSale(GoodsSaleVo goodsSaleVo) {
 		// TODO 权限校验
 		// TODO GoodsSale重新定义vo，防止列暴露
+		GoodsSale goodsSale = new GoodsSale();
+		goodsSale.setBuyer(goodsSaleVo.getBuyer());
+		goodsSale.setGoodsName(goodsSaleVo.getGoodsName());
+		goodsSale.setAddress(goodsSaleVo.getAddress());
+		goodsSale.setPhone(goodsSaleVo.getPhone());
+		goodsSale.setPrice(goodsSaleVo.getPrice());
+		goodsSale.setDebt(goodsSaleVo.getDebt());
+		goodsSale.setRemark(goodsSaleVo.getRemark());
 
 		goodsSale.setSeller("登录者");
 		goodsSale.setBuyTime(new Date());// 后期支持手动修改

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yiren.entity.GoodsSale;
+import com.yiren.vo.GoodsSaleVo;
 
 /**
  * 
@@ -12,7 +13,7 @@ import com.yiren.entity.GoodsSale;
  *
  */
 public interface GoodsSaleService {
-	public int addGoodsSale(GoodsSale goodsSale);
+	public int addGoodsSale(GoodsSaleVo goodsSaleVo);
 
 	public List<GoodsSale> findGoodsSale(GoodsSale goodsSale);
 

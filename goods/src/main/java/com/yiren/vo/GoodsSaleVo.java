@@ -1,31 +1,9 @@
-package com.yiren.entity;
+package com.yiren.vo;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * 商品销售记录表
- * 
- * @author peng
- *
- */
-
-public class GoodsSale implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private long id;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+public class GoodsSaleVo {
 	/**
 	 * 购买人
 	 */
@@ -33,7 +11,6 @@ public class GoodsSale implements Serializable {
 	/**
 	 * 商品名称
 	 */
-
 	private String goodsName;
 	/**
 	 * 住址
@@ -63,9 +40,18 @@ public class GoodsSale implements Serializable {
 	private Date buyTime;
 	private Date createTime;
 	private String state;
+	private int id;
 
 	public String getState() {
 		return state;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setState(String state) {
