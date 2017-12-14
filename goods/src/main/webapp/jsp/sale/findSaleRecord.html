@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html>
-   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"  charset="utf-8">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>    
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="utf-8">
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 
 <!-- Latest compiled and minified Locales -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
-   <title>销管:老板专属_销售记录查询</title>
-   </head>
-   
-   <body style="width: auto; height: auto; " >
-   <table id="table">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<title>销管:老板专属_销售记录查询</title>
+</head>
+<script>
+function functionRoute(e){
+	var url="/goods/jsp/sale/findSaleRecord.html";		
+	if(e=="findSaleRecord"){
+		url="/goods/jsp/sale/findSaleRecord.html";
+	}else if(e=="saleInput"){
+		url="/goods/jsp/sale/saleInput.html";
+	}else if(e=="saleImport"){
+		url="/goods/jsp/sale/saleImport.html";
+	}
+window.location.href=url;
+}
+</script>
+<body >
+	<div style="width: 99%; height: 50px;">		
+			<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+			<button type="button" class="btn btn-primary  btn-lg"
+				onclick="functionRoute(this.value);" value="findSaleRecord">销售查询</button>
+			<!-- 表示一个成功的或积极的动作 -->
+			<button type="button" class="btn btn-success  btn-lg"
+				onclick="functionRoute(this.value);" value="saleInput">销售录入</button>
+			<!-- 信息警告消息的上下文按钮 -->
+			<button type="button" class="btn btn-info  btn-lg"
+				onclick="functionRoute(this.value);" value="saleImport">销售导入</button>
+			<!-- 表示应谨慎采取的动作
+<button type="button" class="btn btn-warning  btn-lg" >功能正在开发</button>
+<button type="button" class="btn btn-danger  btn-lg">功能正在开发</button> -->
+			<!-- 并不强调是一个按钮，看起来像一个链接，但同时保持按钮的行为 -->
+		</div>
+	
 
-</table>
-  <script type="text/javascript">
+
+	<table id="table"></table>
+	<script type="text/javascript">
 	   $('#table').bootstrapTable({		   
 		  url:'/goods/Sale/FindSaleRecord.do',			
 		   method: 'get',   		   
@@ -62,5 +97,5 @@
 
    </script>
 
-   </body>
+</body>
 </html>

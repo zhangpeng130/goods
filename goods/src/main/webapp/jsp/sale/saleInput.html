@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"  charset="utf-8">    
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
-   <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-   <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
-   <title>销管:老板专属_销售登记页面</title>
-   </head>
-     <script type="text/javascript">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="utf-8">
+<link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>销管:老板专属_销售登记页面</title>
+</head>
+<script type="text/javascript">
      var mark=true;
    function inputClick(){	  	  
 	   if(mark){
@@ -17,66 +21,102 @@
 	   
    }
    </script>
-   <body style="width: auto; height: auto; " >
-   <div style="width:100%;height:0px; "></div>
-   <div style="margin-top:130px; padding-left:25% ;padding-top:50px; width:100%;height:300px;">
-    <form class="form-horizontal"  id ="inputForm" role="form"  method="post"  action="/goods/Sale/SaleInput.do">
-   <div class="form-group">
-    <label for="firstname" class="col-sm-2 control-label">购买人</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="buyer" name="buyer" placeholder="必填">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">商品名称</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="goodsName"  name="goodsName" placeholder="必填">
-    </div>
-  </div>
-   <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">住址</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="address"  name="address" placeholder="必填">
-    </div>
-  </div>
-   <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">联系方式</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="必填">
-    </div>      
-  </div>
-  
-   <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">售价</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="price" name="price" placeholder="必填">
-    </div>
-    </div>
-  
-     <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">欠款</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="debt" name="debt" placeholder="可不填">
-    </div>
-    </div>
-  
-   <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">备注</label>
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id=" remark"  name="remark" placeholder="可不填">
-    </div>
-  </div>
-  
+   <script>
+function functionRoute(e){
+	var url="/goods/jsp/sale/findSaleRecord.html";		
+	if(e=="findSaleRecord"){
+		url="/goods/jsp/sale/findSaleRecord.html";
+	}else if(e=="saleInput"){
+		url="/goods/jsp/sale/saleInput.html";
+	}else if(e=="saleImport"){
+		url="/goods/jsp/sale/saleImport.html";
+	}
+window.location.href=url;
+}
+</script>
+<body>
+	<div style="width: 99%; height: 50px;">
+		<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
+		<button type="button" class="btn btn-primary  btn-lg"
+			onclick="functionRoute(this.value);" value="findSaleRecord">销售查询</button>
+		<!-- 表示一个成功的或积极的动作 -->
+		<button type="button" class="btn btn-success  btn-lg"
+			onclick="functionRoute(this.value);" value="saleInput">销售录入</button>
+		<!-- 信息警告消息的上下文按钮 -->
+		<button type="button" class="btn btn-info  btn-lg"
+			onclick="functionRoute(this.value);" value="saleImport">销售导入</button>
+		<!-- 表示应谨慎采取的动作
+<button type="button" class="btn btn-warning  btn-lg" >功能正在开发</button>
+<button type="button" class="btn btn-danger  btn-lg">功能正在开发</button> -->
+		<!-- 并不强调是一个按钮，看起来像一个链接，但同时保持按钮的行为 -->
+	</div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="reset" class="btn btn-default btn-lg">   重新填写</button>
-      <button type="button" id="inputSubmit"  onclick="inputClick();" class="btn btn-primary btn-lg">录     入</button>      
-    </div>
-  
-  </div>
-</form>
-  
-</div>
-   </body>
+	<div >
+		<form class="form-horizontal" id="inputForm" role="form" method="post"
+			action="/goods/Sale/SaleInput.do">
+			<div class="form-group">
+				<label for="firstname" class="col-sm-2 control-label">购买人</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="buyer" name="buyer"
+						placeholder="必填">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">商品名称</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="goodsName"
+						name="goodsName" placeholder="必填">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">住址</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="address" name="address"
+						placeholder="必填">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">联系方式</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="phone" name="phone"
+						placeholder="必填">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">售价</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="price" name="price"
+						placeholder="必填">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">欠款</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="debt" name="debt"
+						placeholder="可不填">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">备注</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id=" remark" name="remark"
+						placeholder="可不填">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="reset" class="btn btn-default btn-lg">重新填写</button>
+					<button type="button" id="inputSubmit" onclick="inputClick();"
+						class="btn btn-primary btn-lg">录 入</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</body>
 </html>
