@@ -52,7 +52,9 @@ public class SaleController {
 	@RequestMapping(value = "/GoodsSaleImport")
 	public String GoodsSaleImport(
 			@RequestParam(value = "inputfile") MultipartFile importfile) {
+
 		goodsSaleService.importGoodsSale(importfile);
+
 		return "/sale/findSaleRecord";
 
 	}

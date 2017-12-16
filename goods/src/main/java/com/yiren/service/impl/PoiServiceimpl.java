@@ -44,23 +44,25 @@ public class PoiServiceimpl implements PoiService {
 	public List listToEntityList(String entityMark, String path) {
 		List rowlist = xlsxFileToList(path);
 		List list = new ArrayList();
-		for (int i = 0; i < rowlist.size(); i++) {
-			Map rowMap = (Map) rowlist.get(i);
-			Set rowMapSet = rowMap.keySet();
-			Iterator keySetIterator = rowMapSet.iterator();
-			GoodsSale goodsSale = null;
-			if ("GoodsSale".equals(entityMark)) {
-				goodsSale = new GoodsSale();
-			}
-			while (keySetIterator.hasNext()) {
-				Object key = keySetIterator.next();
-				Object value = rowMap.get(key);
+		if (rowlist != null && rowlist.size() > 0) {
+			for (int i = 0; i < rowlist.size(); i++) {
+				Map rowMap = (Map) rowlist.get(i);
+				Set rowMapSet = rowMap.keySet();
+				Iterator keySetIterator = rowMapSet.iterator();
+				GoodsSale goodsSale = null;
 				if ("GoodsSale".equals(entityMark)) {
-					mapToGoodsSale(key, value, goodsSale);
+					goodsSale = new GoodsSale();
 				}
-			}
-			if ("GoodsSale".equals(entityMark)) {
-				list.add(goodsSale);
+				while (keySetIterator.hasNext()) {
+					Object key = keySetIterator.next();
+					Object value = rowMap.get(key);
+					if ("GoodsSale".equals(entityMark)) {
+						mapToGoodsSale(key, value, goodsSale);
+					}
+				}
+				if ("GoodsSale".equals(entityMark)) {
+					list.add(goodsSale);
+				}
 			}
 		}
 		return list;
@@ -76,31 +78,42 @@ public class PoiServiceimpl implements PoiService {
 		XSSFWorkbook xssFWorkbook = null;
 		try {
 			xssFWorkbook = new XSSFWorkbook(path);
+			XSSFSheet sheet = xssFWorkbook.getSheetAt(0);
+			Iterator<Row> rowIt = sheet.iterator();
+			List rowList = new ArrayList();
+			while (rowIt.hasNext()) {
+				Row row = rowIt.next();
+				if (row.getRowNum() == 0) {
+					continue;
+				}
+				Iterator<Cell> cellIt = row.cellIterator();
+				Map rowMap = new HashMap();
+				while (cellIt.hasNext()) {
+					Cell cell = cellIt.next();
+					if (cell.CELL_TYPE_NUMERIC == cell.getCellType()) {
+						rowMap.put(cell.getColumnIndex(),
+								cell.getNumericCellValue());
+					} else if (cell.CELL_TYPE_STRING == cell.getCellType()) {
+						rowMap.put(cell.getColumnIndex(),
+								cell.getStringCellValue());
+					}
+				}
+				rowList.add(rowMap);
+				return rowList;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		XSSFSheet sheet = xssFWorkbook.getSheetAt(0);
-		Iterator<Row> rowIt = sheet.iterator();
-		List rowList = new ArrayList();
-		while (rowIt.hasNext()) {
-			Row row = rowIt.next();
-			if (row.getRowNum() == 0) {
-				continue;
-			}
-			Iterator<Cell> cellIt = row.cellIterator();
-			Map rowMap = new HashMap();
-			while (cellIt.hasNext()) {
-				Cell cell = cellIt.next();
-				if (cell.CELL_TYPE_NUMERIC == cell.getCellType()) {
-					rowMap.put(cell.getColumnIndex(),
-							cell.getNumericCellValue());
-				} else if (cell.CELL_TYPE_STRING == cell.getCellType()) {
-					rowMap.put(cell.getColumnIndex(), cell.getStringCellValue());
+		} finally {
+			if (xssFWorkbook != null) {
+				try {
+					xssFWorkbook.close();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
-			rowList.add(rowMap);
 		}
-		return rowList;
+
+		return null;
 	}
 
 	/**

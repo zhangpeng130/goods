@@ -19,7 +19,10 @@ public class ObjectUtils {
 					continue;
 				}
 				if (fields[i].get(obj) != null) {
-					return true;
+					if (!"".equals(fields[i].get(obj))) {
+						return true;
+					}
+
 				}
 			}
 		} catch (IllegalAccessException e) {

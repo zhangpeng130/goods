@@ -54,10 +54,17 @@ public class GoodsSaleServiceimpl implements GoodsSaleService {
 
 	@Override
 	public boolean importGoodsSale(MultipartFile importfile) {
-		String fileUrl = UploadUtils.uploadFile(importfile,
-				ConstantPoi.POI_UPLOAD_PATH
-						+ ConstantPoi.POI_UPLOAD_MODULE_SALE);// 上传文件
-		boolean importResult = importFileDataGoodsSale(fileUrl);// 导入文件数据
+		boolean importResult = false;
+		try {
+			String fileUrl = UploadUtils.uploadFile(importfile,
+					ConstantPoi.POI_UPLOAD_PATH
+							+ ConstantPoi.POI_UPLOAD_MODULE_SALE + "/");// 上传文件
+			if (fileUrl != null) {
+				importResult = importFileDataGoodsSale(fileUrl);// 导入文件数据
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return importResult;
 	}
 
@@ -70,10 +77,12 @@ public class GoodsSaleServiceimpl implements GoodsSaleService {
 	private boolean importFileDataGoodsSale(String fileUrl) {
 		List list = poiService.getListFromXlsx("GoodsSale", fileUrl);
 		int insertCount = 0;
-		for (int i = 0; i < list.size(); i++) {
-			GoodsSale goodsSale = (GoodsSale) list.get(i);
-			goodsSale.setSeller("登录者");
-			insertCount += goodsSaleDao.insertGoodsSale(goodsSale);
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				GoodsSale goodsSale = (GoodsSale) list.get(i);
+				goodsSale.setSeller("登录者");
+				insertCount += goodsSaleDao.insertGoodsSale(goodsSale);
+			}
 		}
 		System.out.println(insertCount);
 		if (insertCount > 0) {
