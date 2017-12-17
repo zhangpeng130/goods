@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      http://www.springframework.org/schema/security
+      http://www.springframework.org/schema/security/spring-security-4.0.xsd ">
+    <!-- 不需要进行安全认证的资源 -->   
+    <http pattern="loginxx.html" security="none" />
+ 
+ 
+
+    <!-- 资源所需要的权限 -->
+    <http use-expressions="true" auto-config="true">
+        <intercept-url pattern="/login.html" access="permitAll" />
+       <!--   <intercept-url pattern="/user.jsp*" access="hasRole('ROLE_USER')" />-->
+        <intercept-url pattern="/jsp/sale/*" access="hasRole('ROLE_ADMIN')" />
+         <form-login login-page="/login.html" login-processing-url="/goods/user/UserLogin.do"  
+                always-use-default-target="true"  
+                default-target-url="/success.jsp"  
+                username-parameter="username"  
+                password-parameter="password"/>  
+                <csrf disabled="true"></csrf>
+    </http>
+    <!-- 配置用户和相应的权限 -->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="test" password="test" authorities="ROLE_USER" />
+                <user name="root" password="123" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

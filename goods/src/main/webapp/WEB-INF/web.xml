@@ -16,19 +16,26 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+   <!-- Spring Security  Start-->
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping> 
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--Spring Security Start  -->
+  
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring-mybatis.xml</param-value>
-  </context-param>
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  <listener>
-    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-  </listener>
-
-  
-  
+    <param-value>    
+    classpath:spring-security.xml
+    classpath:spring-mybatis.xml
+    </param-value>
+  </context-param>  
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.jpg</url-pattern>
@@ -41,25 +48,32 @@
     <url-pattern>*.ico</url-pattern>
     <url-pattern>*.html</url-pattern>
     <url-pattern>*.htm</url-pattern>
-    <url-pattern>*.xml</url-pattern>
-   
+    <url-pattern>*.xml</url-pattern>   
   </servlet-mapping>
+  <!--SpringMVC Start  -->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring-mvc.xml</param-value>
+      <param-value>
+       classpath:spring-mvc.xml      
+      </param-value>      
     </init-param>
     <load-on-startup>1</load-on-startup>
    <!--20160619--> <async-supported>true</async-supported>  
-  </servlet>
-    
-     
+  </servlet>     
   <servlet-mapping>
     <servlet-name>SpringMVC</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+    <!--SpringMVC End  -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
 
 
   <welcome-file-list>
