@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yiren.entity.UserInfo;
 import com.yiren.service.UserInfoService;
-import com.yiren.utils.MD5Utils;
+import com.yiren.utils.EncoderStrUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -22,9 +22,9 @@ public class UserInfoController {
 	public String UserInput() {
 		logger.info("正在添加用户");
 		UserInfo userInfo = new UserInfo();
-		userInfo.setUserName("root");
-		MD5Utils md5 = new MD5Utils();
-		userInfo.setPassword(md5.generatePassword("123"));
+		userInfo.setUserName("zk");
+		// MD5Utils md5 = new MD5Utils();
+		userInfo.setPassword(EncoderStrUtil.encodedPassword("9860"));
 		userInfo.setPhone("13022188023");
 		userInfoService.addUserInfo(userInfo);
 		logger.info("添加用户已结束");

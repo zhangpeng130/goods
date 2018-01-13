@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -11,7 +13,7 @@
    <div style="width:100%;height:0px; "></div>
    <div style="margin-top:130px; padding-left:25% ;padding-top:50px; width:100%;height:300px;">
   <!-- <form class="form-horizontal" role="form" action="/goods/jsp/sale/saleInput.html"> -->
-  <form class="form-horizontal"  method="post" action="/j_spring_security_check">
+  <form class="form-horizontal"  method="post" action="j_spring_security_check">
 
   <!--  <form class="form-horizontal"  method="post"role="form" action="/goods/user/UserLogin.do">-->
    <div class="form-group">

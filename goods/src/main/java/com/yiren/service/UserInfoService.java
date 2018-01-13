@@ -3,6 +3,7 @@ package com.yiren.service;
 import java.util.List;
 
 import com.yiren.entity.UserInfo;
+
 /**
  * 
  * @author peng
@@ -10,6 +11,10 @@ import com.yiren.entity.UserInfo;
  */
 public interface UserInfoService {
 	public int addUserInfo(UserInfo userInfo);
-    public List<UserInfo>  findUserInfoByUserName(UserInfo userInfo);
-    public boolean login(String userName,String password);
+
+	public List<UserInfo> findUserInfoByUserName(UserInfo userInfo);
+
+	public boolean login(String userName, String password);
+
+	public UserInfo loadUserInfoByUsername(String userName);
 }

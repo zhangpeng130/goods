@@ -2,6 +2,8 @@ package com.yiren.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,8 +32,11 @@ public class SaleController {
 	private PoiService poiService;
 
 	@RequestMapping(value = "/SaleInput", method = { RequestMethod.POST })
-	public String SaleInput(GoodsSaleVo goodsSaleVo) {
-		logger.info("正在录入:");
+	public String SaleInput(GoodsSaleVo goodsSaleVo, HttpServletRequest request) {
+		String remoteAddr = request.getHeader("X-FORWARDED-FOR");
+		remoteAddr = request.getRemoteAddr();
+		System.out.println(remoteAddr);
+		logger.info("正在录入:" + remoteAddr);
 		logger.info(JSON.toJSONString(goodsSaleVo));
 		if (ObjectUtils.checkObjFieldIsNotNull(goodsSaleVo)) {// 对象作为参数,是个大bug
 			goodsSaleService.addGoodsSale(goodsSaleVo);

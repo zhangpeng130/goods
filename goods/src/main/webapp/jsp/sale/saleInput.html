@@ -4,24 +4,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"
 	charset="utf-8">
 <link rel="stylesheet"
-	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	href="/goods/goodsjs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="/goods/goodsjs/jquery/2.1.1/jquery.min.js"></script>
+<script src="/goods/goodsjs/bootstrap/3.3.7//js/bootstrap.min.js"></script>
 <title>销管:老板专属_销售登记页面</title>
 </head>
 <script type="text/javascript">
-     var mark=true;
-   function inputClick(){	  	  
-	   if(mark){
-	   $("#inputForm").submit();	   
-   }mark=false;//防止重复提交
- 
-	   
-   }
-   </script>
-   <script>
+var mark=true;
+	function inputClick() {
+		if (mark) {		
+			var price=$("#price").val();			
+			var debt=$("#debt").val();
+			var isSub=true;				
+			if(isNaN(price)){
+				alert("请输入正确的价格");
+				isSub=false;
+				return;
+			}			
+			if(isNaN(debt)){
+				alert("请输入正确的欠款");
+				isSub=false;
+				return;
+			}			
+			if(isSub){
+			$("#inputForm").submit();
+			}
+		
+		}
+		mark = false;//防止重复提交
+	}
+	
+</script>
+<script>
 function functionRoute(e){
 	var url="/goods/jsp/sale/findSaleRecord.html";		
 	if(e=="findSaleRecord"){
@@ -51,7 +65,7 @@ window.location.href=url;
 		<!-- 并不强调是一个按钮，看起来像一个链接，但同时保持按钮的行为 -->
 	</div>
 
-	<div >
+	<div>
 		<form class="form-horizontal" id="inputForm" role="form" method="post"
 			action="/goods/Sale/SaleInput.do">
 			<div class="form-group">
@@ -111,8 +125,7 @@ window.location.href=url;
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="reset" class="btn btn-default btn-lg">重新填写</button>
-					<button type="button" id="inputSubmit" onclick="inputClick();"
-						class="btn btn-primary btn-lg">录 入</button>
+					<button type="button" id="inputSubmit" onclick="inputClick();"	class="btn btn-primary btn-lg">录 入</button>
 				</div>
 			</div>
 		</form>

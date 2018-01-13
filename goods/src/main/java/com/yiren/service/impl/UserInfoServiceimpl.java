@@ -44,4 +44,15 @@ public class UserInfoServiceimpl implements UserInfoService {
 		return false;
 	}
 
+	@Override
+	public UserInfo loadUserInfoByUsername(String userName) {
+		UserInfo userInfo = new UserInfo();
+		userInfo.setUserName(userName);
+		List<UserInfo> userInfoList = findUserInfoByUserName(userInfo);
+		if (userInfoList != null && userInfoList.size() > 0) {
+			UserInfo userInfoFind = userInfoList.get(0);
+			return userInfoFind;
+		}
+		return null;
+	}
 }
