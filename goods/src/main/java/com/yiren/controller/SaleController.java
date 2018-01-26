@@ -31,6 +31,13 @@ public class SaleController {
 	@Autowired
 	private PoiService poiService;
 
+	/**
+	 * 商品销售信息录入
+	 * 
+	 * @param goodsSaleVo
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/SaleInput", method = { RequestMethod.POST })
 	public String SaleInput(GoodsSaleVo goodsSaleVo, HttpServletRequest request) {
 		String remoteAddr = request.getHeader("X-FORWARDED-FOR");
@@ -46,6 +53,12 @@ public class SaleController {
 
 	}
 
+	/**
+	 * 商品销售信息查询
+	 * 
+	 * @param goodsSale
+	 * @return
+	 */
 	@RequestMapping(value = "/FindSaleRecord")
 	@ResponseBody
 	public JSONArray FindSaleRecord(GoodsSale goodsSale) {
@@ -60,6 +73,12 @@ public class SaleController {
 
 	}
 
+	/**
+	 * 商品销售信息批量导入
+	 * 
+	 * @param importfile
+	 * @return
+	 */
 	@RequestMapping(value = "/GoodsSaleImport")
 	public String GoodsSaleImport(
 			@RequestParam(value = "inputfile") MultipartFile importfile) {

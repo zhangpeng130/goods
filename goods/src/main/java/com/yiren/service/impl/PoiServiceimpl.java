@@ -99,8 +99,8 @@ public class PoiServiceimpl implements PoiService {
 					}
 				}
 				rowList.add(rowMap);
-				return rowList;
 			}
+			return rowList;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
